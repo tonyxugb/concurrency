@@ -16,6 +16,7 @@ public class Priority {
     }
 
 
+
     class Job implements Runnable{
         private int priority;
         private long jobCount;
