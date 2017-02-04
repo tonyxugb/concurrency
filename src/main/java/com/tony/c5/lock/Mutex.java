@@ -6,6 +6,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
+ *
  * Created by xugebing on 2017/1/22.
  */
 public class Mutex implements Lock{
@@ -18,7 +19,7 @@ public class Mutex implements Lock{
             return getState() == 1;
         }
 
-        //当状态是0的时候获取锁
+        //当状态是0的时候获取锁，如果经过CAS设置成功(同步状态设置为1)，则代表获取了同步状态；
         public boolean tryAcquire(int acquires){
             if(compareAndSetState(0, 1)){
                 setExclusiveOwnerThread(Thread.currentThread());
