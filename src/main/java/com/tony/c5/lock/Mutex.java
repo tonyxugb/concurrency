@@ -6,18 +6,12 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- *
- * Created by xugebing on 2017/1/22.
+ * 独占锁示例
  */
 public class Mutex implements Lock{
 
     //静态内部类，自定义同步器
     private static class Sync extends AbstractQueuedSynchronizer{
-
-        //是否处于占用状态
-        protected boolean isHeldExclusively(){
-            return getState() == 1;
-        }
 
         //当状态是0的时候获取锁，如果经过CAS设置成功(同步状态设置为1)，则代表获取了同步状态；
         public boolean tryAcquire(int acquires){
@@ -70,14 +64,4 @@ public class Mutex implements Lock{
     public Condition newCondition() {
         return sync.newCondition();
     }
-
-    public boolean isLocked(){
-        return sync.isHeldExclusively();
-    }
-
-    public boolean hasQueuedThreads(){
-        return sync.hasQueuedThreads();
-    }
-
-
 }

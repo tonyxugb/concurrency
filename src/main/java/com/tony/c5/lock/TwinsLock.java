@@ -8,20 +8,27 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
+ * 共享锁示例
+ *
+ * 该工具在同一时刻，至多只允许两个线程同时访问，超过两个线程的访问将被堵塞
+ *
  * Created by xugebing on 2017/1/24.
  */
 public class TwinsLock implements Lock {
 
+    //同步状态初始值设置为2
     private final Sync sync = new Sync(2);
 
     private static final class Sync extends AbstractQueuedSynchronizer{
+
         Sync(int count){
-            if(count <= 0){
-                throw new IllegalArgumentException("count must large than zero.");
+            if(count <= 0 && count > 2){
+                throw new IllegalArgumentException("count must be larger than zero and less than two");
             }
             setState(count);
         }
 
+        //同一时刻允许多个线程同时访问，显然是共享式访问，需要使用队列同步器的acquireShared方法
         public int tryAcquireShared(int reduceCount){
             for(;;){
                 int current = getState();
