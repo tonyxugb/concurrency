@@ -36,6 +36,8 @@ public class FairAndUnfairTest {
             thread.start();
         }
 
+        // sleep 2秒的目的是为了保证5个线程都阻塞在await()方法处，
+        // 当start.countDown()时，所有线程开始竞争锁
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
@@ -56,6 +58,8 @@ public class FairAndUnfairTest {
         @Override
         public void run() {
             try {
+
+                //在此阻塞，等待start.countDown()之后，便开始竞争获取锁了
                 start.await();
             } catch (InterruptedException e) {
             }
