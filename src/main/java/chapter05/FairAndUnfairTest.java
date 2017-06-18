@@ -17,11 +17,43 @@ public class FairAndUnfairTest {
     private static Lock unfairLock = new ReentrantLock2(false);
     private static CountDownLatch start;
 
+    /**
+     *    公平锁的执行结果：
+     *    Lock by [0], Waiting by [1, 3, 4, 2]
+     *    Lock by [1], Waiting by [3, 4, 2, 0]
+     *    Lock by [3], Waiting by [4, 2, 0, 1]
+     *    Lock by [4], Waiting by [2, 0, 1, 3]
+     *    Lock by [2], Waiting by [0, 1, 3, 4]
+     *    Lock by [0], Waiting by [1, 3, 4, 2]
+     *    Lock by [1], Waiting by [3, 4, 2]
+     *    Lock by [3], Waiting by [4, 2]
+     *    Lock by [4], Waiting by [2]
+     *    Lock by [2], Waiting by []
+     *
+     *    公平锁每次都是从同步队列中的第一个节点获取到锁
+     */
     @Test
     public void fair() {
         testLock(fairLock);
     }
 
+    /**
+     * Lock by [1], Waiting by [3, 0, 4, 2]
+     * Lock by [1], Waiting by [3, 0, 4, 2]
+     * Lock by [3], Waiting by [0, 4, 2]
+     * Lock by [3], Waiting by [0, 4, 2]
+     * Lock by [0], Waiting by [4, 2]
+     * Lock by [0], Waiting by [4, 2]
+     * Lock by [4], Waiting by [2]
+     * Lock by [4], Waiting by [2]
+     * Lock by [2], Waiting by []
+     * Lock by [2], Waiting by []
+     *
+     *  非公平锁出现了一个线程连续获取锁的情况。之所以出现这种情况，
+     *  是因为在非公平锁中，当一个线程请求锁时，只要获取了同步状态即成功获取锁，
+     *  在这个前提下，刚释放锁的线程再次获取同步状态的几率会非常大，
+     *  使得其他线程只能在同步队列中等待
+     */
     @Test
     public void unfair() {
         testLock(unfairLock);
