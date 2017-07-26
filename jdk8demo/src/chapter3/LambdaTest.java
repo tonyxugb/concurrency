@@ -5,7 +5,7 @@ package chapter3;
  */
 public class LambdaTest {
 
-    public static void process(Runnable r){
+    public static void process(Runnable r) {
         r.run();
     }
 

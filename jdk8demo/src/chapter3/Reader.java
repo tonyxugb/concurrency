@@ -3,10 +3,8 @@ package chapter3;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.Buffer;
 
 /**
  * Created by xugebing on 2017/7/24.
@@ -14,8 +12,8 @@ import java.nio.Buffer;
 public class Reader {
 
     public String processFile(BufferedReaderProcessor p) throws IOException {
-            BufferedReader br = new BufferedReader(new FileReader("D:\\data.txt"));
-            return p.process(br);
+        BufferedReader br = new BufferedReader(new FileReader("D:\\data.txt"));
+        return p.process(br);
     }
 
 
