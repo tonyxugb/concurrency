@@ -1,4 +1,4 @@
-package chapter05;
+package com.tony.c5.lock;
 
 import org.junit.Test;
 
