@@ -3,6 +3,7 @@ package com.tony.c6.container;
 import org.junit.Test;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * Created by xugebing on 2017/9/15.
@@ -35,6 +36,7 @@ public class ContainerTest {
         int size = queue.size();
         boolean isContain = queue.contains(cat);
         queue.remove(cat);
+
 
     }
 }
