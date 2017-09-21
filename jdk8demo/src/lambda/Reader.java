@@ -1,4 +1,4 @@
-package chapter3;
+package lambda;
 
 import org.junit.Test;
 
@@ -19,10 +19,13 @@ public class Reader {
 
     @Test
     public void testProcess() throws IOException {
-        String oneLine = processFile((BufferedReader br) -> br.readLine());
+
+        BufferedReaderProcessor brp = (BufferedReader br) -> br.readLine();
+        String oneLine = processFile(brp);
         System.out.println("oneLine:" + oneLine);
 
-        String twoLine = processFile((BufferedReader br) -> br.readLine() + br.readLine());
+        BufferedReaderProcessor brp2 = (BufferedReader br) -> br.readLine() + br.readLine();
+        String twoLine = processFile(brp2);
         System.out.println("twoLine:" + twoLine);
     }
 }

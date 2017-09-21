@@ -1,4 +1,4 @@
-package chapter3;
+package lambda;
 
 import java.io.BufferedReader;
 import java.io.IOException;
