@@ -8,7 +8,9 @@ public class MethodReferenceTest {
     public static void main(String[] args) {
 
         String inStr = "lambda add power to Java";
-        //MyStringOps::strReverse 相当于实现了接口方法func() ，并在接口方法func()中作了MyStringOps.strReverse()操作
+        //MyStringOps::strReverse整体相当于接口StringFunc的一个实现类的实例；
+        //MyStringOps::strReverse中的代码相当于实现了接口StringFunc的抽象方法;
+        //相当于把MyStringOps::strReverse中代码传递给了stringOp方法
         StringFunc sf = MyStringOps::strReverse;
 
         String outStr = stringOp(sf, inStr);
