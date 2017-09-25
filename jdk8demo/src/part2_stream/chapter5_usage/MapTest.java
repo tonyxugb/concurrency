@@ -43,6 +43,16 @@ public class MapTest {
                 .flatMap(Arrays::stream)
                 .distinct()
                 .collect(Collectors.toList());
+        /**
+         *
+         * .map(w -> w.split("")) 返回的是Stream<String[]>
+         *
+         * Arrays::stream可以将一个String[]做为入参，返回对应的Stream<String>
+         *
+         * flatMap做的就是把每一个元素（元素类型是Stream<String>）中的每个值都转换成一个流，
+         *
+         * 然后把每一个流连接起来成为一个大的流
+         */
         System.out.println(list);
     }
 
