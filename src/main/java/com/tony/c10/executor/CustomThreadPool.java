@@ -1,10 +1,11 @@
 package com.tony.c10.executor;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * 自定义线程池
@@ -24,17 +25,29 @@ public class CustomThreadPool {
                 new RejectPolicy()
         );
 
+        List<Future<String>> futures = new ArrayList<>();
+
         for (int i = 0; i < 30; i++) {
-            executor.execute(() ->{
-                try {
+            Future<String> future = executor.submit(() ->{
                     String threadName = Thread.currentThread().getName();
                     System.out.println(threadName + ":doing");
                     TimeUnit.SECONDS.sleep(30);
                     System.out.println(threadName + ":done");
-                } catch (InterruptedException e) {
-
-                }
+                    return "some";
             });
+
+            futures.add(future);
+        }
+
+        try {
+            //以抛异常的方式结束等待
+            System.out.println(futures.get(0).get(5, TimeUnit.SECONDS));
+        } catch (InterruptedException e) {
+
+        } catch (ExecutionException e) {
+
+        } catch (TimeoutException e) {
+
         }
 
     }
