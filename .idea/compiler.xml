@@ -17,16 +17,25 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+      <profile default="false" name="Annotation profile for quartzdemo" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="concurrency" />
+        <module name="quartzdemo" />
+      </profile>
+      <profile default="false" name="Annotation profile for guavademo" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="guavademo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="concurrency" target="1.5" />
+      <module name="concurrency" target="1.8" />
+      <module name="guavademo" target="1.8" />
+      <module name="quartzdemo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

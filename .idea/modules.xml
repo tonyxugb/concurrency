@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/concurrency.iml" filepath="$PROJECT_DIR$/concurrency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guavademo/guavademo.iml" filepath="$PROJECT_DIR$/guavademo/guavademo.iml" />
       <module fileurl="file://$PROJECT_DIR$/jdk8demo/jdk8demo.iml" filepath="$PROJECT_DIR$/jdk8demo/jdk8demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quartzdemo/quartzdemo.iml" filepath="$PROJECT_DIR$/quartzdemo/quartzdemo.iml" />
     </modules>
   </component>
 </project>
