@@ -50,5 +50,13 @@ public class CustomThreadPool {
 
         }
 
+
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+        }
+
     }
 }
